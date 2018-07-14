@@ -24,23 +24,31 @@ void *servo(void *arg) {
    }
 }
 
+int angle1;
+int angle2;
 void *update(void *arg) {
    int i = 0;
+   long time = 0;
    while(1) {
-      printf("hi\n");
-      if (i==0) {
+//      printf("hi\n");
+      time = map(angle1,0,180,1250000,2000000);
+      on.tv_nsec = time;
+      off.tv_nsec =20000000-time;
+/*      if (i==0) {
          i++;
-         on.tv_nsec = 1000000L;
-         off.tv_nsec=19000000L;
+         on.tv_nsec = 1250000L;
+         off.tv_nsec=18750000L;
       } else {
          i=0;
-         on.tv_nsec =10000000;
-         off.tv_nsec=10000000;
-      }
-      nanosleep( (const struct timespec[]){{1,0000000}},NULL );
+         on.tv_nsec = 2000000;
+         off.tv_nsec=18000000;
+      }*/
+      nanosleep( (const struct timespec[]){{0,100000000}},NULL );
    }
 }
 
+//int angle1;
+//int angle2;
 void *gamepad(void *arg) {
    int fd = -1;
    const char *filename = "/dev/input/event0";
@@ -49,8 +57,8 @@ void *gamepad(void *arg) {
 
    int hor = 0;
    int ver = 0;
-   int angle1 = 0;
-   int angle2 = 0;
+//   angle1 = 90;
+//   angle2 = 90;
 
    //Opens device
    if ( (fd = open(filename, O_RDONLY) ) < 0) {
@@ -81,7 +89,8 @@ void *gamepad(void *arg) {
       angle2 = map(ver, abs_feat.minimum, abs_feat.maximum, 0, 180);
       printf("Horizontal: %d - %d\t",hor, angle1);
       printf("Vertical: %d - %d\n", ver, angle2);
-      sleep(1);
+//      sleep(1);
+      nanosleep( (const struct timespec[]){{0,100000000}},NULL );
    }
 }
 
@@ -89,7 +98,8 @@ int main(void) {
    on.tv_sec = 0;
    on.tv_nsec = 0;
    off.tv_sec = 0;
-
+   angle1 = 90;
+   angle2 = 90;
    pthread_t ser;
    pthread_t upd;
    pthread_t gp;

@@ -25,8 +25,8 @@ void *update(void *arg) {
          off.tv_nsec=19000000L;
       } else {
          i=0;
-         on.tv_nsec =10000000;
-         off.tv_nsec=10000000;
+         on.tv_nsec = 2000000L;
+         off.tv_nsec=18000000L;
       }
       nanosleep( (const struct timespec[]){{1,0000000}},NULL );
    }
