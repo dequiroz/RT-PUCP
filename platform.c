@@ -87,8 +87,8 @@ void *gamepad(void *arg) {
       //update values
       angle1 = map(hor, abs_feat.minimum, abs_feat.maximum, 0, 180);
       angle2 = map(ver, abs_feat.minimum, abs_feat.maximum, 0, 180);
-      printf("Horizontal: %d - %d\t",hor, angle1);
-      printf("Vertical: %d - %d\n", ver, angle2);
+//      printf("Horizontal: %d - %d\t",hor, angle1);
+//      printf("Vertical: %d - %d\n", ver, angle2);
 //      sleep(1);
       nanosleep( (const struct timespec[]){{0,100000000}},NULL );
    }
