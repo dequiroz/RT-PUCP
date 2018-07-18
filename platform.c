@@ -1,6 +1,13 @@
+//====================================================================
+// Archivo de presentacion del curso de Sistemas en Tiempo Real
 //
-//testing
-//
+// Elaborado por:
+// Diego Quiroz
+// Yuri Ruiz
+// Samir Huamani
+// Alexander Lopez
+//====================================================================
+
 #include <stdio.h>
 #include <linux/input.h>
 #include <fcntl.h>
